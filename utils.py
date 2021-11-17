@@ -307,13 +307,47 @@ def makeSignedCert(cpub, ccn, cvdays, cserial, spriv, scert=None):
     return builder.sign(private_key=spriv, algorithm=hashes.SHA256(),
             backend=default_backend())
 
-receiptFloatRegex = re.compile(r'^-?([1-9]\d+|\d)[,.]\d\d$')
+
+def is_valid_monetary_value(value):
+    regex = "|".join([
+        r'-?[1-9]\d{0,2}(\.\d{3})+(\,\d{1,2})?',  # for cases when the integer part has .
+        r'-?[1-9]\d{0,2}(\,\d{3})+(\.\d{1,2})?',  # for cases when the integer part has ,
+        r'-?[1-9]\d*([\.,\,]\d{1,2})?',  # for cases when the integer part has no . or ,
+        r'-?0([\.,\,]\d{1,2})?'  # for cases when is only cents or completely 0
+    ])
+    matches = re.match(regex, value)
+    if matches:
+        return matches.group(0) == value
+    else:
+        return False
+
+
+def monetary_value_to_float(value, raise_exception=True):
+    if not is_valid_monetary_value(value):
+        if raise_exception:
+            raise ValueError(f"Value {value} cannot be parsed")
+        else:
+            return
+
+    split_value = re.split('\,|\.', value)
+    if len(split_value) > 1:  # it means value has at least one . or ,
+        parsed_value = "".join(split_value[:-1])  # last part is not considered because it may be for cents
+        if len(split_value[-1]) < 3:  # if last part has 1 or 2 numbers, they are cents
+            parsed_value += "."
+        parsed_value += f"{split_value[-1]}"
+    else:  # it means value is an integer
+        parsed_value = value
+    return float(parsed_value)
+
+
+# receiptFloatRegex = re.compile(r'^-?([1-9]\d+|\d)[,.]\d\d$')
 def getReceiptFloat(fstr):
-    if receiptFloatRegex.match(fstr) is None:
-        return None
+    # if receiptFloatRegex.match(fstr) is None:
+    #     return None
 
     try:
-        return float(fstr.replace(',', '.'))
+        # return float(fstr.replace(',', '.'))
+        return monetary_value_to_float(fstr)
     except:
         return None
 
