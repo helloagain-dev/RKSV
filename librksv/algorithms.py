@@ -188,7 +188,7 @@ class R1(AlgorithmI):
     def verify(self, jwsString, pubKey):
         payload = None
         try:
-            payload = jwt.PyJWS().decode(jwsString, pubKey)
+            payload = jwt.PyJWS().decode(jwsString, pubKey, algorithms=['ES256'])
         except jwt.exceptions.DecodeError as e:
             pass
 
