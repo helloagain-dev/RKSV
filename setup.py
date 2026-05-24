@@ -4,4 +4,5 @@ setup(
     name="rksv",
     version="20180925",
     packages=find_packages(),
+    scripts=['key_store.py', 'verify_receipt.py'],
 )
