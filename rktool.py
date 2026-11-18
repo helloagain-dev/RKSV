@@ -1041,7 +1041,7 @@ class RKToolApp(App):
 
 if __name__ == '__main__':
     import gettext
-    gettext.install('rktool', './lang', True)
+    gettext.install('rktool', './lang')
 
     if platform != 'android':
         from kivy.config import Config

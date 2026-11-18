@@ -22,7 +22,7 @@ from builtins import int
 import sys
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 from librksv.receipt import Receipt
 from librksv.url_receipt_helpers import getBasicCodeFromURL

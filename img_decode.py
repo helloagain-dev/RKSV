@@ -71,7 +71,7 @@ except ImportError:
 
 if __name__ == "__main__":
     import gettext
-    gettext.install('rktool', './lang', True)
+    gettext.install('rktool', './lang')
 
     import sys
     from PIL import Image

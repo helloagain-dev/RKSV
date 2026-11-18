@@ -24,7 +24,7 @@ import os
 import sys
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 from librksv.run_test import runTest
 
@@ -35,7 +35,7 @@ def usage():
 
 if __name__ == "__main__":
     import gettext
-    gettext.install('rktool', './lang', True)
+    gettext.install('rktool', './lang')
 
     if len(sys.argv) < 5:
         usage()

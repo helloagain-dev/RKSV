@@ -23,7 +23,7 @@ from builtins import int
 import sys
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 from librksv import depexport
 from librksv import depparser

@@ -25,7 +25,7 @@ import sys
 from six import string_types
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 from librksv import key_store
 from librksv import receipt

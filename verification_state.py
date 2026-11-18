@@ -27,7 +27,7 @@ import json
 import sys
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 from librksv import depparser
 from librksv import utils

@@ -25,7 +25,7 @@ import random
 import sys
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 from librksv.test import test_verify
 from librksv.test import verification_proxy

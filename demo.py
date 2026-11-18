@@ -22,7 +22,7 @@ from builtins import int
 from builtins import range
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 import datetime
 import random

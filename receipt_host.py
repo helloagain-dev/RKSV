@@ -25,7 +25,7 @@ import sys
 from flask import Flask, abort, jsonify, make_response
 
 import gettext
-gettext.install('rktool', './lang', True)
+gettext.install('rktool', './lang')
 
 from librksv import depparser
 from librksv import receipt
